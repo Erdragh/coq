@@ -46,7 +46,7 @@ Proof.
         intro C.
         intro D.
         exact C.
-        
+
         intro C.
         intro D.
         apply D.
@@ -54,5 +54,14 @@ Proof.
         contradiction.
 Qed.
 
-
-    
+Theorem TDN: A \/ ~A.
+Proof.
+    apply FU with (x := A).
+    split.
+    intro.
+    left.
+    assumption.
+    intro.
+    right.
+    assumption.
+Qed.
