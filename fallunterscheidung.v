@@ -46,13 +46,12 @@ Proof.
         intro C.
         intro D.
         exact C.
+        
         intro C.
         intro D.
-        assert (A -> B).
-            intro E.
-            contradiction.
         apply D.
-        exact H.
+        intro E.
+        contradiction.
 Qed.
 
 
