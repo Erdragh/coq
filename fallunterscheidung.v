@@ -130,8 +130,10 @@ Proof.
         apply Implication.
         exact yesA.
     destruct notB_or_notA.
-    exact H.
-    contradiction.
+        (*For the branch of the destruction, where we have ~B*)
+        exact H.
+        (*For the branch of the destruction, where we have ~A*)
+        contradiction.
 Qed.
 
 Parameters C: Prop.
