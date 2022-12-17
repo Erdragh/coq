@@ -66,6 +66,17 @@ Proof.
     assumption.
 Qed.
 
+(*
+I could probably have used assumption a lot in here,
+but I think using names is more readable.
+
+In the future I probably will use it, because it means
+less work to write things down, but also less readibility,
+which I think is important when first learning about programming
+concepts, as I want to go back and take a look at the code
+and understand what it's doing.
+*)
+
 Theorem FirstExercise: ((A \/ B) -> (A /\ B)) -> ((~A \/ B) /\ (A \/ ~B)).
 Proof.
     intro Implication.
@@ -121,4 +132,23 @@ Proof.
     destruct notB_or_notA.
     exact H.
     contradiction.
+Qed.
+
+Parameters C: Prop.
+
+Theorem ThirdExercise: ((A /\ (B \/ C)) -> ((A /\ B) \/ (A /\C))).
+Proof.
+    intro A_and__B_or_C.
+    destruct A_and__B_or_C as [yesA B_or_C].
+    destruct B_or_C.
+        (*Proof for B being given*)
+        left.
+        split.
+        exact yesA.
+        exact H.
+        (*Proof for C being given*)
+        right.
+        split.
+        exact yesA.
+        exact H.
 Qed.
