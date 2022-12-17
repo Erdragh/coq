@@ -110,4 +110,15 @@ Proof.
         exact notB.
 Qed.
 
-    
+Theorem SecondExercise: ((A -> (~B \/ ~A)) -> ((A -> ~B) \/ ~B)).
+Proof.
+    intro Implication.
+    left.
+    intro yesA.
+    assert (~B \/ ~A) as notB_or_notA.
+        apply Implication.
+        exact yesA.
+    destruct notB_or_notA.
+    exact H.
+    contradiction.
+Qed.
