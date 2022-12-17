@@ -1,7 +1,7 @@
 Require Import Classical_Prop.
 
 Section Fallunterscheidung.
-Variables x y: Prop. (* x = psi; y = phi*)
+Variables x y: Prop. (* x = psi; y = phi *)
 Lemma FU: ((x -> y) /\ (~x -> y)) -> y.
 Proof.
     intro A.
@@ -65,3 +65,29 @@ Proof.
     right.
     assumption.
 Qed.
+
+Theorem FirstExercise: ((A \/ B) -> (A /\ B)) -> ((~A \/ B) /\ (A \/ ~B)).
+Proof.
+    intro.
+    apply FU with (x := (A)).
+    split.
+        (*Proof for the left side.*)
+        split.
+        assert (A /\ B) as D.
+            apply H.
+            left.
+            exact H0.
+        destruct D as [_ E].
+        right.
+        exact E.
+        
+        left.
+        exact H0.
+
+        (*Proof for the right side.*)
+        intro.
+        split.
+        left.
+        exact H0.
+        
+    
