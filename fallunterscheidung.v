@@ -68,26 +68,46 @@ Qed.
 
 Theorem FirstExercise: ((A \/ B) -> (A /\ B)) -> ((~A \/ B) /\ (A \/ ~B)).
 Proof.
-    intro.
-    apply FU with (x := (A)).
+    intro Implication.
+    apply FU with (x := (A \/ B)).
     split.
+        intro A_or_B.
         (*Proof for the left side.*)
         split.
-        assert (A /\ B) as D.
-            apply H.
-            left.
-            exact H0.
-        destruct D as [_ E].
+        assert (A /\ B) as A_and_B.
+            apply Implication.
+            exact A_or_B.
+            destruct A_and_B as [_ yesB].
         right.
-        exact E.
-        
+        exact yesB.
+        assert (A /\ B) as A_and_B.
+            apply Implication.
+            exact A_or_B.
+            destruct A_and_B as [yesA _].
         left.
-        exact H0.
+        exact yesA.
 
         (*Proof for the right side.*)
-        intro.
+        intro not_A_or_B.
+        assert (~A /\ ~B) as notA_and_notB.
+        split.
+        intro yesA.
+            assert (A \/ B) as A_or_B.
+            left.
+            exact yesA.
+        contradiction.
+        intro yesB.
+            assert (A \/ B) as A_or_B.
+            right.
+            exact yesB.
+        contradiction.
+        destruct notA_and_notB as [notA notB].
+
         split.
         left.
-        exact H0.
-        
+        exact notA.
+        right.
+        exact notB.
+Qed.
+
     
