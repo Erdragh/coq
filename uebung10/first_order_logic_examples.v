@@ -25,6 +25,6 @@ Proof.
     destruct H0 as [d H0].
     (*Existenzquantor im Ziel fuer d beweisen*)
     exists d.
-      apply H1.
+    apply H1.
   assumption.
 Qed.
