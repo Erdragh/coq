@@ -35,25 +35,25 @@ Section drinker.
   Proof.
     apply FU with (x := exists z, ~ drinks z).
     split.
-      intro.
-      destruct H as [z ZDoesntDrink].
+      intro ExistsNonDrinker.
+      destruct ExistsNonDrinker as [z ZDoesntDrink].
       exists z.
       intro ZDoesDrink.
       contradiction.
       
-      intro.
+      intro DoesntExistNonDrinker.
       exists x.
-      assert (forall y, ~~drinks y).
-        intro.
-        intro.
-        unfold not at 1 in H.
-        apply H.
+      assert (forall y, ~~drinks y) as EverybodyDoesntNotDrink.
+        intro y.
+        intro YDoesntDrink.
+        unfold not at 1 in DoesntExistNonDrinker.
+        apply DoesntExistNonDrinker.
         exists y.
-        apply H0.
-      intro.
-      intro.
+        apply YDoesntDrink.
+      intro xDrinks.
+      intro y.
       apply NNPP.
-      apply H0.
+      apply EverybodyDoesntNotDrink.
   Qed.
   
 
