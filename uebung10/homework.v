@@ -30,7 +30,6 @@ Section drinker.
   Variable x : T.               (* Sicherstellung, dass Ã¼berhaupt jemand in der Kneipe ist. *)
   Variable drinks : T -> Prop.  (* PrÃ¤dikat, dass jemand in der Kneipe trinkt. *)
 
-  (* TODO: Formalisierung und Beweis des Paradoxons. *)
   Theorem Paradox: exists x, drinks x -> forall y, drinks y.
   Proof.
     apply FU with (x := exists z, ~ drinks z).
