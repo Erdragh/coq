@@ -68,7 +68,6 @@ Section zoll.
   Variable Z : T -> Prop.       (* Ist Zollbeamter/-in *)
   Variable D : T -> Prop.       (* Betreibt Drogenschmuggel *)
 
-  (*TODO: Hier Formalisierung und Beweis einfÃ¼gen. *)
   Theorem Drogenschmuggel: ((forall x, ~I x -> exists y, Z y /\ S y x) /\ (exists x, E x /\ D x /\ (forall y, S y x -> D y)) /\ (forall x, I x -> ~ D x) -> (exists x, Z x /\ D x)).
   Proof.
     intro Conjunction.
