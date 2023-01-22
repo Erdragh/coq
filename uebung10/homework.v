@@ -69,6 +69,28 @@ Section zoll.
   Variable D : T -> Prop.       (* Betreibt Drogenschmuggel *)
 
   (*TODO: Hier Formalisierung und Beweis einfÃ¼gen. *)
+  Theorem Drogenschmuggel: ((forall x, ~I x -> exists y, Z y /\ S y x) /\ (exists x, E x /\ D x /\ (forall y, S y x -> D y)) /\ (forall x, I x -> ~ D x) -> (exists x, Z x /\ D x)).
+  Proof.
+    intro Conjunction.
+    destruct Conjunction as [Phi1 [Phi2 Phi3]].
+    destruct Phi2 as [x [xEntered [xSmuggles onlySmugglersSearchedX]]].
+    assert (~ I x) as xNotImmune.
+      intro xImmune.
+      assert (~ D x) as xDoesntSmuggle.
+        apply Phi3.
+        exact xImmune.
+      contradiction.
+    assert (exists y, Z y /\ S y x) as [y [yZoll ySearchedx]].
+      apply Phi1.
+      exact xNotImmune.
+    assert (D y) as ySmuggles.
+      apply onlySmugglersSearchedX.
+      exact ySearchedx.
+    exists y.
+    split.
+    exact yZoll.
+    exact ySmuggles.
+  Qed.
 
 End zoll.
 
